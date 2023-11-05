@@ -18,7 +18,6 @@ public class DistribuidorasController {
 
     final JuegosRepository juegosRepository;
     final DistribuidorasRepository distribuidorasRepository;
-
     public DistribuidorasController(JuegosRepository juegosRepository, DistribuidorasRepository distribuidorasRepository) {
         this.juegosRepository = juegosRepository;
         this.distribuidorasRepository = distribuidorasRepository;
@@ -51,7 +50,7 @@ public class DistribuidorasController {
         } else {
             // Manejar errores aquí si es necesario
             return Collections.emptyList();
-        }
+        } aun falta probar esto
     }
     */
     @PostMapping(value = {"", "/guardar"})
@@ -95,8 +94,6 @@ public class DistribuidorasController {
 
                 if (distribuidoraRecibida.getSede() != null)
                     distribuidoraActualizada.setSede(distribuidoraRecibida.getSede());
-
-
                 distribuidorasRepository.save(distribuidoraActualizada);
                 rpta.put("resultado", "ok");
                 rpta.put("msg", "La distribuidora ha sido actualizada");
@@ -130,7 +127,6 @@ public class DistribuidorasController {
                 rpta.put("result","error");
                 rpta.put("msg","el ID ingresado no existe");
             }
-
             return ResponseEntity.ok(rpta);
         }catch (NumberFormatException e){
             rpta.put("result","error");
