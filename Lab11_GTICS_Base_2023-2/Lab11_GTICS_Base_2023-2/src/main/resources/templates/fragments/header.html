@@ -20,7 +20,7 @@
                     <a class="nav-link" th:classappend="${option == 'Vista'}?'active' :''" th:href="@{'/juegos/lista'}">Juegos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" href=" " ><span>Mis </span>Juegos</a>
+                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" th:href="@{'/juegos/xusuario'}" >MisJuegos</a>
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link" th:classappend="${option == 'Plataformas'}?'active' :''" th:href="@{'/plataformas/lista'}" >Plataformas</a>

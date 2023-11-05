@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -41,11 +43,22 @@ public class JuegosController {
     DistribuidoraDao distribuidoraDao;
 
     @GetMapping(value = {"/juegos/lista"})
-    public String listaJuegos (Model model){
-
+    public String listaJuegos (Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User usuario = (User) session.getAttribute("usuario");
+        System.out.println(usuario.getNombres());
+        System.out.println(usuario.getIdusuario());
         model.addAttribute("lista",juegoDao.lista());
         return "juegos/lista";
+    }
 
+    @GetMapping(value = {"/juegos/xusuario"})
+    public String listarJuegosXUsuario (Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User usuario = (User) session.getAttribute("usuario");
+        int idUsuario = usuario.getIdusuario();
+        model.addAttribute("listaJuegosXUsuario",juegoDao.listarJuegosXUsuario(idUsuario));
+        return "juegos/xusuario";
     }
 
     @GetMapping(value = {"", "/", "/vista"})
@@ -112,6 +125,9 @@ public class JuegosController {
         attr.addFlashAttribute("msg", "Juego borrado exitosamente");
         return "redirect:/juegos/lista";
     }
+
+
+
 
 
 

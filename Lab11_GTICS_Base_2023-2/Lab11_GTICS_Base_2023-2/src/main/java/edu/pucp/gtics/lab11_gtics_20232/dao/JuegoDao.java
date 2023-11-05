@@ -2,6 +2,7 @@ package edu.pucp.gtics.lab11_gtics_20232.dao;
 
 import edu.pucp.gtics.lab11_gtics_20232.entity.Juegos;
 import edu.pucp.gtics.lab11_gtics_20232.entity.JuegosDto;
+import edu.pucp.gtics.lab11_gtics_20232.entity.JuegosxUsuario;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,6 +28,20 @@ public class JuegoDao {
         }
         return lista;
     }
+
+
+    public List<JuegosxUsuario> listarJuegosXUsuario(int idUsuario){
+        List<JuegosxUsuario> listaJuegosXUsuario = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        String endPoint = "http://localhost:8080/juegos"; //falta modificar estoo de acuerdo a lo deMASSIEL
+        ResponseEntity<JuegosxUsuario[]> responseEntity = restTemplate.getForEntity(endPoint,JuegosxUsuario[].class);
+        if (responseEntity.getStatusCode().is2xxSuccessful()){
+            JuegosxUsuario[] body = responseEntity.getBody();
+            listaJuegosXUsuario = Arrays.asList(body);
+        }
+        return listaJuegosXUsuario;
+    }
+
 
     public void guardar(Juegos juegos){
         RestTemplate restTemplate = new RestTemplate();
@@ -60,5 +75,7 @@ public class JuegoDao {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete("http://localhost:8080/juegos/borrar?id="+id);
     }
+
+
 
 }
