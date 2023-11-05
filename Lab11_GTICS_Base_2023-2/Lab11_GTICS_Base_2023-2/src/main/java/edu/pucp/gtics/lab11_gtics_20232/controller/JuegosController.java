@@ -42,6 +42,9 @@ public class JuegosController {
     @Autowired
     DistribuidoraDao distribuidoraDao;
 
+    @Autowired
+    JuegosXUsuarioRepository juegosXUsuarioRepository;
+
     @GetMapping(value = {"/juegos/lista"})
     public String listaJuegos (Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -52,14 +55,17 @@ public class JuegosController {
         return "juegos/lista";
     }
 
-    @GetMapping(value = {"/juegos/xusuario"})
-    public String listarJuegosXUsuario (Model model, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        User usuario = (User) session.getAttribute("usuario");
-        int idUsuario = usuario.getIdusuario();
-        model.addAttribute("listaJuegosXUsuario",juegoDao.listarJuegosXUsuario(idUsuario));
-        return "juegos/xusuario";
-    }
+        @GetMapping(value = {"/juegos/xusuario"})
+        public String listarJuegosXUsuario (Model model, HttpServletRequest request){
+            HttpSession session = request.getSession();
+            User usuario = (User) session.getAttribute("usuario");
+            int idUsuario = usuario.getIdusuario();
+            //model.addAttribute("listaJuegosXUsuario",juegoDao.listarJuegosXUsuario(idUsuario));
+
+            List<JuegosxUsuario> listaJuegosXUsuario = juegosXUsuarioRepository.listaJuegosXUsuario(idUsuario);
+            model.addAttribute("listaJuegosXUsuario", listaJuegosXUsuario);
+            return "juegos/xusuario";
+        }
 
     @GetMapping(value = {"", "/", "/vista"})
     public String vistaJuegos ( Model model){

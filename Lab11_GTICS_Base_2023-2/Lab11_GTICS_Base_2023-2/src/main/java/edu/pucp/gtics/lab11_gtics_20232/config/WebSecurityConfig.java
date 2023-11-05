@@ -72,6 +72,8 @@ public class WebSecurityConfig  {
 
         ;
 
+        http.logout().logoutSuccessUrl("/openLoginWindow");
+
         http.authorizeHttpRequests()
                 .anyRequest().permitAll();
 

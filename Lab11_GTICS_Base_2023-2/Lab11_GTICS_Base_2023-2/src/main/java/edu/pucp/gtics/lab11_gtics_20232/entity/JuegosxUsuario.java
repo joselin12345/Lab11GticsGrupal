@@ -1,51 +1,30 @@
 package edu.pucp.gtics.lab11_gtics_20232.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 
 @Entity
 @Table(name = "juegosxusuario")
+@Getter
+@Setter
 public class JuegosxUsuario {
-
     @Id
-    private int idJuegoXUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idjuegosxusario", nullable = false)
+    private Integer idjuegosxusuario;
 
     @ManyToOne
-    @JoinColumn(name = "idjuego")
-    @Valid
+    @JoinColumn(name = "idjuego", nullable = false)
     private Juegos juego;
 
     @ManyToOne
-    @JoinColumn(name = "idusuario")
-    @Valid
-    private User usuario;
+    @JoinColumn(name = "idusuario", nullable = false)
+    private User idusuario;
 
-    private int cantidad;
-
-
-    public int getIdJuegoXUsuario() {return idJuegoXUsuario;}
-    public void setIdJuegoXUsuario(int idJuegoXUsuario) {this.idJuegoXUsuario = idJuegoXUsuario;}
-
-    public Juegos getJuego() {
-        return juego;
-    }
-    public void setJuego(Juegos juego) {
-        this.juego = juego;
-    }
-
-    public User getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
+    @Column(name = "cantidad")
+    private Integer cantidad;
 }
