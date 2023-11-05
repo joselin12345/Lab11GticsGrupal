@@ -33,7 +33,7 @@ public class DistribuidoraDao {
 
     public void guardar(Distribuidoras distribuidoras){
         RestTemplate restTemplate = new RestTemplate();
-        String endPoint = "http://localhost:8080/distribuidoras/guardar";
+        String endPoint = "http://localhost:8080/distribuidoras";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Distribuidoras> httpEntity = new HttpEntity<>(distribuidoras, httpHeaders);
@@ -48,13 +48,12 @@ public class DistribuidoraDao {
     public Distribuidoras buscarPorId(int id){
         Distribuidoras distribuidoras = null;
         RestTemplate restTemplate = new RestTemplate();
-        // agregar la direecion de buscar por id del juego
-        String url = "http://localhost:8080/distribuidoras/" + id;
+        String url = "http://localhost:8080/distribuidoras/buscar/" + id;
         ResponseEntity<DistribuidoraDto> forEntity = restTemplate.getForEntity(url, DistribuidoraDto.class);
 
         if (forEntity.getStatusCode().is2xxSuccessful()){
             DistribuidoraDto distribuidoraDto = forEntity.getBody();
-            distribuidoras = distribuidoraDto.getDistribuidoras();
+            distribuidoras = distribuidoraDto.getDistribuidora();
         }
         return distribuidoras;
     }

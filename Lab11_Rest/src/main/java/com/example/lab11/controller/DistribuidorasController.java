@@ -69,7 +69,7 @@ public class DistribuidorasController {
     }
 
 
-    @PutMapping(value = {"/actualizar"})
+    @PutMapping(value = {"","/actualizar"})
     public ResponseEntity<HashMap<String, Object>> actualizarDistribuidora(@RequestBody Distribuidoras distribuidoraRecibida) {
 
         HashMap<String, Object> rpta = new HashMap<>();
@@ -133,6 +133,26 @@ public class DistribuidorasController {
             rpta.put("msg","Debe ingresar un ID válido");
             return ResponseEntity.badRequest().body(rpta);
         }
+    }
+
+    @GetMapping("/buscar/{id}")
+    public HashMap<String, Object> buscar(@PathVariable("id") int id) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+
+            Optional<Distribuidoras> byId = distribuidorasRepository.findById(id);
+            if (byId.isPresent()) {
+                respuesta.put("resultado", "ok");
+                respuesta.put("distribuidora", byId.get());
+                return respuesta;
+            } else {
+                respuesta.put("resultado de busqueda", "no existe");
+                return respuesta;
+            }
+        } catch (NumberFormatException ex) {
+            respuesta.put("error", "no es numero");
+        }
+        return respuesta;
     }
 
 }

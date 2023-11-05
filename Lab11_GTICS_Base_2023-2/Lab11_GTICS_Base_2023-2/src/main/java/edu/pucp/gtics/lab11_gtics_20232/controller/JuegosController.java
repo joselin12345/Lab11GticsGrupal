@@ -105,12 +105,10 @@ public class JuegosController {
 
         if (juegos1 != null){
             juego = juegos1;
-            List<Plataformas> listaPlataformas = plataformasRepository.findAll();
-            List<Generos> listaGeneros = generosRepository.findAll();
             model.addAttribute("juego", juego);
-            model.addAttribute("listaPlataformas", listaPlataformas);
+            model.addAttribute("listaPlataformas", plataformasRepository.findAll());
             model.addAttribute("listaDistribuidoras", distribuidoraDao.lista());
-            model.addAttribute("listaGeneros", listaGeneros);
+            model.addAttribute("listaGeneros", generosRepository.findAll());
             return "juegos/editarFrm";
         }else {
             return "redirect:/juegos/lista";

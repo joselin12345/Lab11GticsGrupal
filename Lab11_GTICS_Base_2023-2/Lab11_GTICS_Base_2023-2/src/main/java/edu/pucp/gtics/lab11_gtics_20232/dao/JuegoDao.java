@@ -45,7 +45,7 @@ public class JuegoDao {
 
     public void guardar(Juegos juegos){
         RestTemplate restTemplate = new RestTemplate();
-        String endPoint = "http://localhost:8080/juegos/guardar";
+        String endPoint = "http://localhost:8080/juegos";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Juegos> httpEntity = new HttpEntity<>(juegos, httpHeaders);
@@ -60,13 +60,12 @@ public class JuegoDao {
     public Juegos buscarPorId(int id){
         Juegos juegos = null;
         RestTemplate restTemplate = new RestTemplate();
-        // agregar la direecion de buscar por id del juego
-        String url = "http://localhost:8080/juegos/" + id;
+        String url = "http://localhost:8080/juegos/buscar/" + id;
         ResponseEntity<JuegosDto> forEntity = restTemplate.getForEntity(url, JuegosDto.class);
 
         if (forEntity.getStatusCode().is2xxSuccessful()){
             JuegosDto juegosDto = forEntity.getBody();
-            juegos = juegosDto.getJuegos();
+            juegos = juegosDto.getJuego();
         }
         return juegos;
     }

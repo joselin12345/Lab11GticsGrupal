@@ -46,7 +46,7 @@ public class JuegosController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseJson);
     }
 
-    @PutMapping(value = { "/actualizar"})
+    @PutMapping(value = { "","/actualizar"})
     public ResponseEntity<HashMap<String, Object>> actualizarJuego(@RequestBody Juegos juegoRecibido) {
 
         HashMap<String, Object> rpta = new HashMap<>();
@@ -163,10 +163,6 @@ public class JuegosController {
         }
         return respuesta;
     }
-
-
-
-
 
 
 }
