@@ -70,7 +70,7 @@ public class DistribuidorasController {
     }
 
 
-    @PutMapping(value = {"", "/actualizar"})
+    @PutMapping(value = {"/actualizar"})
     public ResponseEntity<HashMap<String, Object>> actualizarDistribuidora(@RequestBody Distribuidoras distribuidoraRecibida) {
 
         HashMap<String, Object> rpta = new HashMap<>();
