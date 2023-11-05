@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 public class Juegos {
 
     @Id
-    private int idjuego;
+    private int idJuego;
 
     @Size(min = 3, max = 45, message = "Debe contener entre 3 y 45 caracteres")
     private String nombre;
@@ -22,6 +22,22 @@ public class Juegos {
     private double precio;
 
     private String image;
+
+    public int getIdJuego() {
+        return idJuego;
+    }
+
+    public void setIdJuego(int idJuego) {
+        this.idJuego = idJuego;
+    }
+
+    public Editoras getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editoras editora) {
+        this.editora = editora;
+    }
 
     @ManyToOne
     @JoinColumn(name = "idplataforma")
@@ -44,13 +60,7 @@ public class Juegos {
     private Editoras editora;
 
 
-    public int getIdjuego() {
-        return idjuego;
-    }
 
-    public void setIdjuego(int idjuego) {
-        this.idjuego = idjuego;
-    }
 
     public String getNombre() {
         return nombre;

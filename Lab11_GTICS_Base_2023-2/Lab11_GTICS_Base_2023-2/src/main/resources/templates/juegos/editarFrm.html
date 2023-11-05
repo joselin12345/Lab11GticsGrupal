@@ -8,7 +8,7 @@
         <main>
             <!-- Contenido -->
         <div class="page-header text-center">
-            <h2 th:text="${juego.idjuego == 0? 'Nuevo Juego' : 'Editar Juego'}"></h2>
+            <h2 th:text="${juego.idJuego == 0? 'Nuevo Juego' : 'Editar Juego'}"></h2>
         </div>
         <div class="container-fluid">
                 <form method="POST" class="row g-3" th:object="${juego}"  th:action="@{/juegos/guardar}">
@@ -23,37 +23,37 @@
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error</div>
                     </div>
                     <div class="form-group">
-                        <label for="genero.idgenero">Género</label>
-                        <select class=" form-select" th:classappend="${#fields.hasErrors('genero.idgenero')?'is-invalid':''}" th:field="*{genero.idgenero}" >
+                        <label for="genero.idGenero">Género</label>
+                        <select class=" form-select" th:classappend="${#fields.hasErrors('genero.idGenero')?'is-invalid':''}" th:field="*{genero.idGenero}" >
                             <option value="-1">- Seleccione -</option>
                             <option th:each="genero : ${listaGeneros}"
-                                    th:value="${genero.idgenero}"
+                                    th:value="${genero.idGenero}"
                                     th:text="${genero.nombre}"
-                                    th:selected="(${genero.idgenero} == *{genero.idgenero})" ></option>
+                                    th:selected="(${genero.idGenero} == *{genero.idGenero})" ></option>
                         </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('genero.idgenero')}" th:errors="*{genero.idgenero}">Error</div>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('genero.idGenero')}" th:errors="*{genero.idGenero}">Error</div>
                     </div>
                     <div class="form-group">
-                        <label for="plataforma.idplataforma">Plataforma</label>
-                        <select class="form-select" th:classappend="${#fields.hasErrors('plataforma.idplataforma')?'is-invalid':''}" th:field="*{plataforma.idplataforma}" >
+                        <label for="plataforma.idPlataforma">Plataforma</label>
+                        <select class="form-select" th:classappend="${#fields.hasErrors('plataforma.idPlataforma')?'is-invalid':''}" th:field="*{plataforma.idPlataforma}" >
                           <option value="-1">- Seleccione -</option>
                           <option th:each="plataforma : ${listaPlataformas}"
-                              th:value="${plataforma.idplataforma}"
+                              th:value="${plataforma.idPlataforma}"
                               th:text="${plataforma.nombre}"
-                              th:selected="(${plataforma.idplataforma} == *{plataforma.idplataforma})" ></option>
+                              th:selected="(${plataforma.idPlataforma} == *{plataforma.idPlataforma})" ></option>
                         </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('plataforma.idplataforma')}" th:errors="*{plataforma.idplataforma}">Error</div>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('plataforma.idPlataforma')}" th:errors="*{plataforma.idPlataforma}">Error</div>
                     </div>
                     <div class="form-group">
-                        <label for="distribuidora.iddistribuidora">Distribuidora</label>
-                        <select class="form-select" th:classappend="${#fields.hasErrors('distribuidora.iddistribuidora')?'is-invalid':''}" th:field="*{distribuidora.iddistribuidora}" >
+                        <label for="distribuidora.idDistribuidora">Distribuidora</label>
+                        <select class="form-select" th:classappend="${#fields.hasErrors('distribuidora.idDistribuidora')?'is-invalid':''}" th:field="*{distribuidora.idDistribuidora}" >
                             <option value="-1">- Seleccione -</option>
                             <option th:each="distribuidora : ${listaDistribuidoras}"
-                                    th:value="${distribuidora.iddistribuidora}"
+                                    th:value="${distribuidora.idDistribuidora}"
                                     th:text="${distribuidora.nombre}"
-                                    th:selected="(${distribuidora.iddistribuidora} == *{distribuidora.iddistribuidora})" ></option>
+                                    th:selected="(${distribuidora.idDistribuidora} == *{distribuidora.idDistribuidora})" ></option>
                         </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('distribuidora.iddistribuidora')}" th:errors="*{distribuidora.iddistribuidora}">Error</div>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('distribuidora.idDistribuidora')}" th:errors="*{distribuidora.idDistribuidora}">Error</div>
                     </div>
                     <div class="form-group">
                         <label>Imagen URL</label>
@@ -69,10 +69,10 @@
                             <div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error</div>
                         </div>
                     </div>
-                    <input type="hidden" th:field="*{idjuego}" />
+                    <input type="hidden" th:field="*{idJuego}" />
                     <div class="form-group">
                         <a th:href="@{/juegos/lista}" class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary" th:text="${juego.idjuego == 0? 'Registrar' : 'Actualizar'}">Reg/act</button>
+                        <button type="submit" class="btn btn-primary" th:text="${juego.idJuego == 0? 'Registrar' : 'Actualizar'}">Reg/act</button>
                     </div>
                 </form>
         </div>

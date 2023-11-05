@@ -11,7 +11,7 @@ public class Distribuidoras {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0, message = "Distribuidora no puede estar vacío")
-    private int iddistribuidora;
+    private int idDistribuidora;
 
     @Size(min=3, max = 50, message = "Debe contener entre 3 y 50 caracteres")
     private String nombre;
@@ -31,15 +31,24 @@ public class Distribuidoras {
     @ManyToOne
     @JoinColumn(name = "idsede")
     @Valid
-    private Paises pais;
+    private Paises sede;
 
-    public int getIddistribuidora() {
-        return iddistribuidora;
+    public int getIdDistribuidora() {
+        return idDistribuidora;
     }
 
-    public void setIddistribuidora(int iddistribuidora) {
-        this.iddistribuidora = iddistribuidora;
+    public void setIdDistribuidora(int idDistribuidora) {
+        this.idDistribuidora = idDistribuidora;
     }
+
+    public Paises getSede() {
+        return sede;
+    }
+
+    public void setSede(Paises sede) {
+        this.sede = sede;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -72,11 +81,5 @@ public class Distribuidoras {
         this.fundacion = fundacion;
     }
 
-    public Paises getPais() {
-        return pais;
-    }
 
-    public void setPais(Paises pais) {
-        this.pais = pais;
-    }
 }

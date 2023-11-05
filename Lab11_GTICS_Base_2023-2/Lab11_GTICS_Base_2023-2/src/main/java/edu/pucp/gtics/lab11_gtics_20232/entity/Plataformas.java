@@ -15,7 +15,15 @@ public class Plataformas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0, message = "Plataforma no puede estar vacío")
-    private int idplataforma;
+    private int idPlataforma;
+
+    public int getIdPlataforma() {
+        return idPlataforma;
+    }
+
+    public void setIdPlataforma(int idPlataforma) {
+        this.idPlataforma = idPlataforma;
+    }
 
     @Size(min=3, max = 45, message = "Debe contener entre 3 y 45 caracteres")
     private String nombre;
@@ -23,13 +31,7 @@ public class Plataformas {
     @Size(min=3, max = 198, message = "Debe contener entre 3 y 198 caracteres")
     private String descripcion;
 
-    public int getIdplataforma() {
-        return idplataforma;
-    }
 
-    public void setIdplataforma(int idplataforma) {
-        this.idplataforma = idplataforma;
-    }
 
     public String getNombre() {
         return nombre;
