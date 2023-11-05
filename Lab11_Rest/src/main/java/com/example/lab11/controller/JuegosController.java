@@ -1,11 +1,15 @@
 package com.example.lab11.controller;
 
 import com.example.lab11.entity.Juegos;
+import com.example.lab11.entity.Juegosxusuario;
 import com.example.lab11.repository.JuegosRepository;
+import com.example.lab11.repository.JuegosxusuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.NumberUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +19,11 @@ import java.util.Optional;
 public class JuegosController {
 
     final JuegosRepository juegosRepository;
+    final JuegosxusuarioRepository juegosxusuarioRepository;
 
-    public JuegosController(JuegosRepository juegosRepository) {
+    public JuegosController(JuegosRepository juegosRepository, JuegosxusuarioRepository juegosxusuarioRepository) {
         this.juegosRepository = juegosRepository;
+        this.juegosxusuarioRepository = juegosxusuarioRepository;
     }
 
 
@@ -118,5 +124,52 @@ public class JuegosController {
             return ResponseEntity.badRequest().body(rpta);
         }
     }
+
+    //buscar por id
+    @GetMapping("/buscar/{id}")
+    public HashMap<String, Object> buscar(@PathVariable("id") int id) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+
+            Optional<Juegos> byId = juegosRepository.findById(id);
+            if (byId.isPresent()) {
+                respuesta.put("resultado", "ok");
+                respuesta.put("juego", byId.get());
+                return respuesta;
+            } else {
+                respuesta.put("resultado de busqueda", "no existe");
+                return respuesta;
+            }
+        } catch (NumberFormatException ex) {
+            respuesta.put("error", "no es numero");
+        }
+        return respuesta;
+    }
+
+    //listar juegos por usuario
+
+    @GetMapping("/juegosporusuario/{id}")
+    public HashMap<String, Object> listarJuegosporUsuario(@PathVariable("id") int id) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+            List<Object[]> byId = juegosxusuarioRepository.findJuegosByUsuarioId(id);
+            if (!byId.isEmpty()) {
+                respuesta.put("resultado", "ok");
+                respuesta.put("juego", byId);
+                return respuesta;
+            } else {
+                respuesta.put("resultado de busqueda", "no existe");
+                return respuesta;
+            }
+        } catch (NumberFormatException ex) {
+            respuesta.put("error", "no es numero");
+        }
+        return respuesta;
+    }
+
+
+
+
+
 
 }
