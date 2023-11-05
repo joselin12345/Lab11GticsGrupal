@@ -13,17 +13,19 @@ public class Generos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0, message = "Género no puede estar vacío")
     private
-    int idgenero;
+    int idGenero;
+
+    public int getIdGenero() {
+        return idGenero;
+    }
+
+    public void setIdGenero(int idGenero) {
+        this.idGenero = idGenero;
+    }
+
     private String nombre;
     private String descripcion;
 
-    public int getIdgenero() {
-        return idgenero;
-    }
-
-    public void setIdgenero(int idgenero) {
-        this.idgenero = idgenero;
-    }
 
     public String getNombre() {
         return nombre;

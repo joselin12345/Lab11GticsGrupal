@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/base.html :: head(title='Gameshop4 - Bienvenido')"></head>
+<body>
+<div class='container container-app'>
+  <div th:replace="fragments/header.html :: header(option='Juegos')"></div>
+
+  <div id="content">
+    <main>
+      <!-- Contenido -->
+      <div class="page-header text-center">
+        <h1>Lista de tus Juegos Adquiridos</h1>
+      </div>
+      <div class="container-fluid">
+
+
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th style="width: 18%">Nombre</th>
+            <th style="width: 32%">Descripción</th>
+            <th style="width: 20%">Plataforma</th>
+            <th style="width: 10%">Distribuidora</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="juegoxusuario, info: ${listaJuegosXUsuario}">
+            <td scope="row" th:text="${info.index + 1}" ></td>
+
+            <td scope="row" th:text="${juegoxusuario.juego.nombre}" ></td>
+            <td th:text="${juegoxusuario.juego.descripcion}" ></td>
+            <td th:text="${juegoxusuario.juego.plataforma.nombre}"></td>
+            <td th:text="${juegoxusuario.juego.distribuidora.nombre}" ></td>
+
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <!-- /Contenido -->
+    </main>
+    <div th:replace="fragments/footer.html :: footer(year='2023')"></div>
+  </div>
+</div>
+<div th:replace="fragments/base.html :: jsScripts"></div>
+</body>
+</html>

@@ -26,12 +26,10 @@ public class JuegosController {
         this.juegosxusuarioRepository = juegosxusuarioRepository;
     }
 
-
     @GetMapping(value =  "")
     public List<Juegos> listarJuegos() {
         return juegosRepository.findAll();
     }
-
 
     @PostMapping(value = {"", "/guardar"})
     public ResponseEntity<HashMap<String, Object>> crearJuego(
@@ -48,7 +46,7 @@ public class JuegosController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseJson);
     }
 
-    @PutMapping(value = {"", "/actualizar"})
+    @PutMapping(value = { "/actualizar"})
     public ResponseEntity<HashMap<String, Object>> actualizarJuego(@RequestBody Juegos juegoRecibido) {
 
         HashMap<String, Object> rpta = new HashMap<>();
@@ -116,7 +114,6 @@ public class JuegosController {
                 rpta.put("result","error");
                 rpta.put("msg","el ID ingresado no existe");
             }
-
             return ResponseEntity.ok(rpta);
         }catch (NumberFormatException e){
             rpta.put("result","error");

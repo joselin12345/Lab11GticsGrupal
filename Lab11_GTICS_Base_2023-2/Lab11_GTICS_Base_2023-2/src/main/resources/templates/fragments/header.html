@@ -9,7 +9,7 @@
         <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            GameShop4 <span style="color: black;">[Lab 5]</span>
+            GameShop4 <span style="color: black;">[Lab 11]</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,13 +20,13 @@
                     <a class="nav-link" th:classappend="${option == 'Vista'}?'active' :''" th:href="@{'/juegos/lista'}">Juegos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" href=" " ><span>Mis </span>Juegos</a>
+                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" th:href="@{'/juegos/xusuario'}" >MisJuegos</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" th:classappend="${option == 'Plataformas'}?'active' :''" href="" >Plataformas</a>
+                    <a class="nav-link" th:classappend="${option == 'Plataformas'}?'active' :''" th:href="@{'/plataformas/lista'}" >Plataformas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${option == 'Distribuidoras'}?'active' :''" href="" >Distribuidoras</a>
+                    <a class="nav-link" th:classappend="${option == 'Distribuidoras'}?'active' :''" th:href="@{'/distribuidoras/lista'}" >Distribuidoras</a>
                 </li>
             </ul>
         </div>

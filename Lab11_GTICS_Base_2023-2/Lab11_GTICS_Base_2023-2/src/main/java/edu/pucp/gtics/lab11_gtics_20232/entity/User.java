@@ -1,10 +1,11 @@
 package edu.pucp.gtics.lab11_gtics_20232.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="usuarios")
-public class User {
+public class User implements Serializable {
     @Id
     private int idusuario;
     private String apellidos;
